@@ -18,16 +18,16 @@ from tkinter import Tk, filedialog, simpledialog
 
 
 def convert_to_icon(input_image_path, output_icon_path, resolution):
-    # Open the image to convert
+    # Open the image to convert as a python object using path defined in "select_input_file" and converted to object below
     img = Image.open(input_image_path)
 
-    # Save the image as ICO with the specified resolution
+    # Save the image as ICO with the specified resolution defined in "set_output_resolution" function
     img.save(output_icon_path, format="ICO", sizes=[(resolution, resolution)])
 
 
 def select_input_file():
     root = Tk()  # Create a Tkinter object
-    root.withdraw()  # Hide the main window
+    root.withdraw()  # Hide
 
     file_path = filedialog.askopenfilename(title="Select Input Image",
                                            filetypes=[("Image files", "*.png;*.jpg;*.jpeg;*.gif;*.bmp")])
@@ -36,32 +36,32 @@ def select_input_file():
 
 def select_output_file():
     root = Tk()
-    root.withdraw()  # Hide the main window
+    root.withdraw()  # Hide
 
     file_path = filedialog.asksaveasfilename(title="Save ICO File", defaultextension=".ico",
-                                             filetypes=[("ICO files", "*.ico")])
-    return file_path # Define where to save converted icon to
+                                             filetypes=[("ICO files", "*.ico")])  # open file manager and set the standard output to an .ico file
+    return file_path  # Define where to save converted icon to
 
 
-def define_output_resolution():
+def set_output_resolution():
     root = Tk()
-    root.withdraw()  # Hide the main window
+    root.withdraw()  # Hide
 
-    resolution = simpledialog.askinteger("Resolution", "Enter the output resolution for the ICO file:", initialvalue=32) # Dialogue box for setting resolution
+    resolution = simpledialog.askinteger("Resolution", "Enter the output resolution for the ICO file:", initialvalue=32) # Dialogue box for setting the resolution of the output .ico file
 
-    return resolution # Return the resolution for the converted output
+    return resolution  # Return the resolution for the converted output to be used in the "convert_to_icon" function below
 
 
-input_image_path = select_input_file()
-output_icon_path = select_output_file()
+input_image_path = select_input_file()  # Select Path for input image
+output_icon_path = select_output_file()  # Select Path for output icon
 
-if input_image_path and output_icon_path:
-    resolution = define_output_resolution()
+if input_image_path and output_icon_path:  # If an image is selected for conversion and a path is set for the product...
+    resolution = set_output_resolution()  # Calls define output resolution
 
     if resolution:  # Check if a resolution has been provided
         convert_to_icon(input_image_path, output_icon_path, resolution)
         print(f"Conversion Complete. File saved at: {output_ico_path}")
     else:
-        print("Resolution invalid. Conversion to icon Cancelled: ")
+        print("Resolution invalid fro conversion. Conversion to icon Cancelled: ")
 else:
-    print("Invalid, Conversion Cancelled: ")
+    print("Something went wrong, Cancelling Task: ")
