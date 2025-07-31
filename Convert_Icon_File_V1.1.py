@@ -60,7 +60,7 @@ if input_image_path and output_icon_path:  # If an image is selected for convers
 
     if resolution:  # Check if a resolution has been provided
         convert_to_icon(input_image_path, output_icon_path, resolution)
-        print(f"Conversion Complete. File saved at: {output_ico_path}")
+        print(f"Conversion Complete. File saved at: {output_icon_path}")
     else:
         print("Resolution invalid fro conversion. Conversion to icon Cancelled: ")
 else:
